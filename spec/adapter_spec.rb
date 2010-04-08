@@ -1,9 +1,13 @@
-require File.expand_path(File.join(File.dirname(__FILE__), '..', 'spec', 'spec_helper'))
+require 'spec_helper'
+
+require 'dm-migrations/adapters/dm-sqlite-adapter'
+require 'dm-sqlite-adapter'
 
 require 'dm-core/spec/adapter_shared_spec'
-require 'data_objects_adapter/spec/data_objects_adapter_shared_spec'
+require 'dm-do-adapter/spec/shared_spec'
 
-describe DataMapper::Adapters::Sqlite3Adapter do
+describe DataMapper::Adapters::SqliteAdapter do
+
   before :all do
     @adapter    = DataMapper.setup(:default, 'sqlite3::memory:')
     @repository = DataMapper.repository(@adapter.name)
@@ -11,4 +15,5 @@ describe DataMapper::Adapters::Sqlite3Adapter do
   
   it_should_behave_like "An Adapter"
   it_should_behave_like "A DataObjects Adapter"
+
 end
