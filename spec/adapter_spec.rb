@@ -1,12 +1,11 @@
 require 'spec_helper'
 
-require 'dm-migrations/adapters/dm-sqlite-adapter'
-require 'dm-sqlite-adapter'
+require 'dm-migrations'
 
 require 'dm-core/spec/adapter_shared_spec'
 require 'dm-do-adapter/spec/shared_spec'
 
-describe DataMapper::Adapters::SqliteAdapter do
+describe 'DataMapper::Adapters::SqliteAdapter' do
 
   before :all do
     @adapter    = DataMapper.setup(:default, 'sqlite3::memory:')
