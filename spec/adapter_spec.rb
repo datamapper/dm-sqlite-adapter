@@ -9,8 +9,6 @@ require 'dm-sqlite-adapter/spec/setup'
 ENV['ADAPTER']          = 'sqlite'
 ENV['ADAPTER_SUPPORTS'] = 'all'
 
-DataMapper::Spec.setup
-
 describe 'DataMapper::Adapters::SqliteAdapter' do
 
   before :all do
