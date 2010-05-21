@@ -19,4 +19,14 @@ describe 'DataMapper::Adapters::SqliteAdapter' do
   it_should_behave_like "An Adapter"
   it_should_behave_like "A DataObjects Adapter"
 
+  describe "with 'sqlite' as adapter name" do
+    subject { DataMapper::Adapters::SqliteAdapter.new(:default, { :adapter => 'sqlite' }) }
+    it { subject.options[:adapter].should == 'sqlite3' }
+  end
+
+  describe "with 'sqlite3' as adapter name" do
+    subject { DataMapper::Adapters::SqliteAdapter.new(:default, { :adapter => 'sqlite3' }) }
+    it { subject.options[:adapter].should == 'sqlite3' }
+  end
+
 end
