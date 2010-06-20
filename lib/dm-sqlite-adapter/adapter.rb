@@ -17,7 +17,12 @@ module DataMapper
       end
 
       def normalize_options(options)
-        options.update(:adapter => 'sqlite3')
+        # TODO Once do_sqlite3 accepts both a Pathname or a String,
+        # normalizing database and path won't be necessary anymore
+        db   = (options[:database] || options['database']).to_s
+        path = (options[:path    ] || options['path'    ]).to_s
+
+        options.update(:adapter => 'sqlite3', :database => db, :path => path)
       end
 
     end

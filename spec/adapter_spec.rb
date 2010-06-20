@@ -29,4 +29,14 @@ describe 'DataMapper::Adapters::SqliteAdapter' do
     it { subject.options[:adapter].should == 'sqlite3' }
   end
 
+  describe "with 'database' given as Symbol" do
+    subject { DataMapper::Adapters::SqliteAdapter.new(:default, { :adapter => 'sqlite', :database => :name }) }
+    it { subject.options[:database].should == 'name' }
+  end
+
+  describe "with 'path' given as Symbol" do
+    subject { DataMapper::Adapters::SqliteAdapter.new(:default, { :adapter => 'sqlite', :path => :name }) }
+    it { subject.options[:path].should == 'name' }
+  end
+
 end
