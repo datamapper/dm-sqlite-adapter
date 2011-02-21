@@ -31,11 +31,26 @@ describe 'DataMapper::Adapters::SqliteAdapter' do
 
   describe "with 'database' given as Symbol" do
     subject { DataMapper::Adapters::SqliteAdapter.new(:default, { :adapter => 'sqlite', :database => :name }) }
-    it { subject.options[:database].should == 'name' }
+    it { subject.options[:path].should == 'name' }
   end
 
   describe "with 'path' given as Symbol" do
     subject { DataMapper::Adapters::SqliteAdapter.new(:default, { :adapter => 'sqlite', :path => :name }) }
+    it { subject.options[:path].should == 'name' }
+  end
+
+  describe "with 'database' given as String" do
+    subject { DataMapper::Adapters::SqliteAdapter.new(:default, { :adapter => 'sqlite', 'database' => :name }) }
+    it { subject.options[:path].should == 'name' }
+  end
+
+  describe "with 'path' given as String" do
+    subject { DataMapper::Adapters::SqliteAdapter.new(:default, { :adapter => 'sqlite', 'path' => :name }) }
+    it { subject.options[:path].should == 'name' }
+  end
+
+  describe "with blank 'path' and 'database' given as Symbol" do
+    subject { DataMapper::Adapters::SqliteAdapter.new(:default, { :adapter => 'sqlite', 'path' => '', :database => :name }) }
     it { subject.options[:path].should == 'name' }
   end
 

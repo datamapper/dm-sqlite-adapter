@@ -19,10 +19,18 @@ module DataMapper
       def normalize_options(options)
         # TODO Once do_sqlite3 accepts both a Pathname or a String,
         # normalizing database and path won't be necessary anymore
-        db   = (options[:database] || options.delete('database')).to_s
-        path = (options[:path    ] || options.delete('path')).to_s
+        # Clean out all the 'path-like' parameters in the options hash
+        # ensuring there can only be one.
+        # Also make sure a blank value can't possibly mask a non-blank one
+        path = nil
+        [:path, 'path', :database, 'database'].each do |key|
+          db = options.delete(key)
+          unless db.nil? or db.empty?
+            path ||= db
+          end
+        end
 
-        options.update(:adapter => 'sqlite3', :database => db, :path => path)
+        options.update(:adapter => 'sqlite3', :path => path.to_s)
       end
 
     end
