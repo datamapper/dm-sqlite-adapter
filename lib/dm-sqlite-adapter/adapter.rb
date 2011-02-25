@@ -25,12 +25,13 @@ module DataMapper
         path = nil
         [:path, 'path', :database, 'database'].each do |key|
           db = options.delete(key)
-          unless db.nil? or db.empty?
-            path ||= db
+          unless db.nil?
+            normalized_db = db.to_s # no Symbol#empty? on 1.8.7(ish) rubies
+            path ||= normalized_db unless normalized_db.empty?
           end
         end
 
-        options.update(:adapter => 'sqlite3', :path => path.to_s)
+        options.update(:adapter => 'sqlite3', :path => path)
       end
 
     end
