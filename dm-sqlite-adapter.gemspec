@@ -17,9 +17,7 @@ Gem::Specification.new do |gem|
   gem.version       = DataMapper::SqliteAdapter::VERSION
 
   gem.add_runtime_dependency(%q<dm-do-adapter>, ["~> 1.3.0.beta"])
-
   gem.add_runtime_dependency(%q<do_sqlite3>, ["~> 0.10.6"])
-  gem.add_runtime_dependency(%q<dm-do-adapter>, ["~> 1.3.0.beta"])
 
   gem.add_development_dependency(%q<dm-migrations>, ["~> 1.3.0.beta"])
   gem.add_development_dependency(%q<rake>, ["~> 0.9.2"])
